@@ -31,7 +31,7 @@ def region_grabber(region):
     width = region[2]
     height = region[3]
 
-    region = x1, y1, width, height
+    region = {"top": y1, "left": x1, "width": width,"height": height}
     with mss.mss() as sct:
         return sct.grab(region)
 
@@ -70,6 +70,9 @@ def imagesearcharea(image, x1, y1, x2, y2, precision=0.8, im=None):
 
     res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+    NX = max_loc[0] + x1
+    NY = max_loc[1] + y1
+    max_loc = NX, NY
     if max_val < precision:
         return [-1, -1]
     return max_loc
