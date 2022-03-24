@@ -14,7 +14,7 @@ if platform.system() == "Darwin":
 
 '''
 
-grabs a region (topx, topy, bottomx, bottomy)
+grabs a region (topx, topy, bottomx-topx, bottomy-topy)
 to the tuple (topx, topy, width, height)
 
 input : a tuple containing the 4 coordinates of the region to capture
@@ -44,8 +44,8 @@ input :
 image : path to the image file (see opencv imread for supported types)
 x1 : top left x value
 y1 : top left y value
-x2 : bottom right x value
-y2 : bottom right y value
+x2 : bottom right x value - top left x value
+y2 : bottom right y value - top left y value
 precision : the higher, the lesser tolerant and fewer false positives are found default is 0.8
 im : a PIL image, usefull if you intend to search the same unchanging region for several elements
 
